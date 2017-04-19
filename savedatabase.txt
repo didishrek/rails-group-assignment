@@ -1,0 +1,11 @@
+$rails console
+
+User.create(type_user: "student", name: "Adrien Schricke", email: "adrien.schricke@griffith.ie", password: "foobar", password_confirmation: "foobar")
+
+Student.create(user_id: 1)
+
+Program.create(name: "BSC", inscription_limit: Time.new(2017,05,01))
+
+Modulecourse.create(name: "Emerging Technology", program_id: 1)   
+Modulecourse.create(name: "Web Framework", program_id: 1)    
+
