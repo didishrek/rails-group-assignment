@@ -9,3 +9,7 @@ Program.create(name: "BSC", inscription_limit: Time.new(2017,05,01))
 Modulecourse.create(name: "Emerging Technology", program_id: 1)   
 Modulecourse.create(name: "Web Framework", program_id: 1)    
 
+
+
+
+Pour le type_user => "student" || "lecturer" || "moduleadmin" || "programadmin"
