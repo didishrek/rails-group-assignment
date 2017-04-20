@@ -1,15 +1,38 @@
+Pour le type_user => "student" || "lecturer" || "moduleadmin" || "programadmin"
+
+tous les users ont pour password = "foobar"
+________________________________________________________________________________
+
 $rails console
 
 User.create(type_user: "student", name: "Adrien Schricke", email: "adrien.schricke@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "lecturer", name: "Barry Denby", email: "barry.denby@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "student", name: "Felix Moulin", email: "felix.moulin@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "student", name: "Nolwenn Le Guevel", email: "nolwenn.leguevel@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "lecturer", name: "John Michael Harkness", email: "john.harkness@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "student", name: "Lucie Wautelet", email: "lucie.wautelet@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "moduleadmin", name: "Anakin Skywalker", email: "anakin.skywalker@griffith.ie", password: "foobar", password_confirmation: "foobar")
+User.create(type_user: "programadmin", name: "Luke Skywalker", email: "luke.skywalker@griffith.ie", password: "foobar", password_confirmation: "foobar")
 
 Student.create(user_id: 1)
+Student.create(user_id: 3)
+Student.create(user_id: 4)
+Student.create(user_id: 6)
+
+Lecturer.create(user_id: 2)
+Lecturer.create(user_id: 5)
+
+Moduleadmin.create(user_id: 7)
+Programadmin.create(user_id: 8)
 
 Program.create(name: "BSC", inscription_limit: Time.new(2017,05,01))
 
-Modulecourse.create(name: "Emerging Technology", program_id: 1)   
-Modulecourse.create(name: "Web Framework", program_id: 1)    
+Modulecourse.create(name: "Emerging Technology", program_id: 1)
+Modulecourse.create(name: "Web Framework", program_id: 1) 
+Modulecourse.create(name: "Data Structures & Algorithms", program_id: 1)
+Modulecourse.create(name: "Distributed Systems", program_id: 1) 
+Modulecourse.create(name: "Programming Paradigms", program_id: 1)
+Modulecourse.create(name: "HCI & GUI Programming", program_id: 1) 
 
 
 
-
-Pour le type_user => "student" || "lecturer" || "moduleadmin" || "programadmin"

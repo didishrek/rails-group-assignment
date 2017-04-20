@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20170419213528) do
 
   create_table "moduleadmins", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "module_course_id"
   end
 
   create_table "modulecourses", force: :cascade do |t|

@@ -1,4 +1,13 @@
+<% provide(:title, "Log in") %>
 <p id="notice"><%= notice %></p>
+
+<% if logged_as_student? %>
+  <% @student = Student.find_by(user_id: @user.id)%>
+  <p>
+  <strong>student number :</strong>
+  <%= @student.student_number %>
+</p>
+<% end %>
 
 <p>
   <strong>Type user:</strong>
@@ -15,11 +24,5 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %> |
-<%= link_to 'Log out', logout_path, method: "delete" %>
+
