@@ -23,6 +23,7 @@ Lecturer.create(user_id: 2)
 Lecturer.create(user_id: 5)
 
 Moduleadmin.create(user_id: 7)
+
 Programadmin.create(user_id: 8)
 
 Program.create(name: "BSC", inscription_limit: Time.new(2017,05,01))
