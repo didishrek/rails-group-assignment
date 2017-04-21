@@ -19,8 +19,8 @@ class UsersController < ApplicationController
   # end
 
   # GET /users/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /users
   # POST /users.json
@@ -83,6 +83,11 @@ class UsersController < ApplicationController
     
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless @user == current_user
+      @student = Student.find_by(user_id: @user.id)
+      if @student
+        redirect_to(current_user) unless @user == current_user or logged_as_lecturer? or logged_as_programadmin?
+      else
+        redirect_to(current_user) unless @user == current_user
+      end
     end
 end

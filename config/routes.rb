@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   
   get 'modules' => "modulecourses#index"
+  get 'addmodtostudent' => "modulecourses#addmodtostudent"
+  get 'withdrawmodulestudent' => "modulecourses#withdrawmodulestudent"
+  get 'search_by_student_number' => "students#search_by_student_number"
+  get 'search_by_student_name' => "students#search_by_student_name"
 end

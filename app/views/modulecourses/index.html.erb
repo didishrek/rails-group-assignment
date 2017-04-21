@@ -17,6 +17,18 @@
          <% program = Program.find_by(id: m.program_id) %>
         <td><%= program.name %></td>
         <td><%= m.name %></td>
+        <% if logged_as_student? %>
+          <% if !is_enrolled?(m)%>
+            <td><%= link_to "Enroll", addmodtostudent_path("id" => m) %></td>
+          <% else %>
+            <td><%= link_to "Withdraw", withdrawmodulestudent_path("id" => m) %></td>
+          <% end %>
+        <% end %>
+        
+        <% if logged_as_moduleadmin? %>
+          
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>

@@ -1,7 +1,31 @@
 <% if logged_in? %>
+    <% user = User.find_by(id: current_user) %>
     <%= link_to 'Log out', logout_path, method: "delete" %> |
+    <%= link_to 'Home', user %> |
+<% else %>
+    <%= link_to 'Home', root_path %> |
+    <%= link_to 'Log in', login_path %> |
 <% end %>
-
-<%= link_to 'Home', root_path %> |
-<%= link_to 'Log in', login_path %> |
 <%= link_to 'Modules', modules_path%>
+
+<% if logged_as_lecturer? or logged_as_programadmin? %>
+    <%= form_tag({controller: "students", action: "search_by_student_number"}, method: "get") do%>
+      <div class="field">
+        <%= label_tag(:student_number, "Student Number" )%><br>
+        <%= number_field_tag(:student_number) %>
+      </div>
+      <div class="actions">
+        <%= submit_tag("Search by student number") %>
+      </div>
+    <% end %>
+    
+    <%= form_tag({controller: "students", action: "search_by_student_name"}, method: "get") do%>
+      <div class="field">
+        <%= label_tag(:name, "Student Name" )%><br>
+        <%= text_field_tag(:name) %>
+      </div>
+      <div class="actions">
+        <%= submit_tag("Search by student name") %>
+      </div>
+    <% end %>
+<% end %>

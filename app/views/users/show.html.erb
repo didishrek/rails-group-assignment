@@ -1,4 +1,4 @@
-<% provide(:title, "Log in") %>
+<% provide(:title, @user.name) %>
 <p id="notice"><%= notice %></p>
 
 <% if logged_as_student? %>
@@ -25,4 +25,38 @@
 </p>
 
 
+<% if logged_as_student? or logged_as_lecturer? or logged_as_programadmin?%>
 
+<% if @student %>
+<p>
+  <strong>Module 1 :</strong>
+  <% m = Modulecourse.find_by(id: @student.module_course_id_1)%>
+  <%= m.nil? ? "" : m.name %>
+</p>
+
+<p>
+  <strong>Module 2 :</strong>
+  <% m = Modulecourse.find_by(id: @student.module_course_id_2)%>
+  <%= m.nil? ? "" : m.name %>
+</p>
+
+<p>
+  <strong>Module 3 :</strong>
+  <% m = Modulecourse.find_by(id: @student.module_course_id_3)%>
+  <%= m.nil? ? "" : m.name %>
+</p>
+
+<p>
+  <strong>Module 4 :</strong>
+  <% m = Modulecourse.find_by(id: @student.module_course_id_4)%>
+  <%= m.nil? ? "" : m.name %>
+</p>
+
+<p>
+  <strong>Module 5 :</strong>
+  <% m = Modulecourse.find_by(id: @student.module_course_id_5)%>
+  <%= m.nil? ? "" : m.name %>
+</p>
+<%end%>
+
+<% end %>
