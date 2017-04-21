@@ -26,7 +26,18 @@
         <% end %>
         
         <% if logged_as_moduleadmin? %>
-          
+          <% if find_lecturer_link_to_module(m.id).nil? %>
+            <%= form_tag({controller: "modulecourses", action: "addmodtolecturer"}, method: "get") do%>
+            <%= hidden_field_tag(:module_id, m.id) %>
+            <td><%= select_tag("lecturer", options_for_select(@lecturers.collect{ |l| [l.name, l.id] }),:onchange => "this.form.submit();", prompt: "Select a lecturer" )%></td>
+            <% end %>
+          <%else%>
+            <% lecturer_selected = find_lecturer_link_to_module(m.id) %>
+            <%= form_tag({controller: "modulecourses", action: "addmodtolecturer"}, method: "get") do%>
+            <%= hidden_field_tag(:module_id, m.id) %>
+            <td><%= select_tag("lecturer", options_for_select(@lecturers.collect{ |l| [l.name, l.id] }, selected: lecturer_selected.id),:onchange => "this.form.submit();", prompt: "Select a lecturer" )%></td>
+            <% end %>
+          <%end%>
         <% end %>
         
       </tr>

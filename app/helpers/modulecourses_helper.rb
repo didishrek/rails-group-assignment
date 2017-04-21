@@ -55,4 +55,46 @@ module ModulecoursesHelper
           Student.update(@student.id, "module_course_id_5" => nil)
         end
     end
+    
+    def addmoduletolecturer(module_id, lecturer_id)
+      if lecturer_id.eql? ""
+        @flecturers = Lecturer.where("module_course_id_1 = ? OR module_course_id_2 = ? OR module_course_id_3 = ?", module_id, module_id, module_id)
+        @flecturer = @flecturers.first unless @flecturers.nil?
+        if !@flecturer.nil?
+          if @flecturer.module_course_id_1 == module_id.to_i
+            Lecturer.update(@flecturer.id, "module_course_id_1" => nil)
+          end
+          if @flecturer.module_course_id_2 == module_id.to_i
+            Lecturer.update(@flecturer.id, "module_course_id_2" => nil)
+          end
+          if @flecturer.module_course_id_3 == module_id.to_i
+            Lecturer.update(@flecturer.id, "module_course_id_3" => nil)
+          end
+        end
+      else
+        @modulecourse = Modulecourse.find_by(id: module_id)
+        @user = User.find_by(id: lecturer_id)
+        @lecturer = Lecturer.find_by(user_id: @user.id)
+        
+        if @lecturer.module_course_id_1 == nil
+          Lecturer.update(@lecturer.id, "module_course_id_1" => @modulecourse.id)
+        elsif @lecturer.module_course_id_2 == nil
+          Lecturer.update(@lecturer.id, "module_course_id_2" => @modulecourse.id)
+        elsif @lecturer.module_course_id_3 == nil
+          Lecturer.update(@lecturer.id, "module_course_id_3" => @modulecourse.id)
+        end
+      end
+    end
+    
+    def find_lecturer_link_to_module(module_id)
+      @modulecourse = Modulecourse.find_by(id: module_id)
+      @flecturers = Lecturer.where("module_course_id_1 = ? OR module_course_id_2 = ? OR module_course_id_3 = ?", module_id, module_id, module_id)
+      @flecturer = @flecturers.first unless @flecturers.nil?
+      if @flecturer
+        @user = User.find_by(id: @flecturer.user_id)
+        @user
+      else
+        nil
+      end
+    end
 end

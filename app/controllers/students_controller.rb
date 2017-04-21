@@ -12,7 +12,6 @@ class StudentsController < ApplicationController
     
     def search_by_student_name
         pname = params[:name]
-        #@fuser = User.find_by(name: pname)
         @fusers = User.where('name LIKE ?', "%#{pname}%")
         @fuser = @fusers.first unless @fusers.nil?
         if @fuser
