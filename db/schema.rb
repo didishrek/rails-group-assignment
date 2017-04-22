@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170419213528) do
   create_table "programs", force: :cascade do |t|
     t.string   "name"
     t.datetime "inscription_limit"
+    t.datetime "deadline_grade"
   end
 
   create_table "students", primary_key: "student_number", force: :cascade do |t|
