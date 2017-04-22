@@ -6,6 +6,7 @@ class GradesController < ApplicationController
         module_id = params[:module_id]
         @modulecourse = Modulecourse.find_by(id: module_id)
         if @modulecourse
+            @program = Program.find_by(id: @modulecourse.program_id)
             @students = Student.where("module_course_id_1 = ? OR module_course_id_2 = ? OR module_course_id_3 = ? OR module_course_id_4 = ? OR module_course_id_5 = ?", module_id, module_id, module_id, module_id, module_id)
             @grade = Grade.new
         else

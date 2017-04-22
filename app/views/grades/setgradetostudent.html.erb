@@ -4,6 +4,8 @@
 
 <p id="notice"><%= notice %></p>
 
+<p>You can add or change grade until <%= @program.deadline_grade%></p>
+
 <table>
   <thead>
     <tr>
@@ -17,27 +19,33 @@
     <% @students.each do |s| %>
       <tr>
         <td><%= User.find_by(id: s.user_id).name %></td>
-        <%if findgrade(s.user_id, @modulecourse.id) %>
-          <td>
-          <%= form_for @grade, url: {action: "update"} do |f| %>
-            <%= f.hidden_field(:id, :value =>  @fgrade.id) %>
-            <%= f.hidden_field(:user_id, :value => s.user_id) %>
-            <%= f.hidden_field(:module_course_id, :value => @modulecourse.id) %>
-            <%= f.number_field(:grade, :value => @fgrade.grade, in: 0..100, step: 1)%>
-            <%= f.submit("Update grade") %>
-          <% end %>
-        </td>
-        <% else %>
-        
-          <td>
-            <%= form_for @grade, url: {action: "create"} do |f| %>
+        <%if canlecturergrades?(@program.id)%>
+          <%if findgrade(s.user_id, @modulecourse.id) %>
+            <td>
+            <%= form_for @grade, url: {action: "update"} do |f| %>
+              <%= f.hidden_field(:id, :value =>  @fgrade.id) %>
               <%= f.hidden_field(:user_id, :value => s.user_id) %>
               <%= f.hidden_field(:module_course_id, :value => @modulecourse.id) %>
-              <%=f.number_field(:grade,  in: 0..100, step: 1)%>
-              <%= f.submit("Set grade") %>
+              <%= f.number_field(:grade, :value => @fgrade.grade, in: 0..100, step: 1)%>
+              <%= f.submit("Update grade") %>
             <% end %>
           </td>
+          <% else %>
           
+            <td>
+              <%= form_for @grade, url: {action: "create"} do |f| %>
+                <%= f.hidden_field(:user_id, :value => s.user_id) %>
+                <%= f.hidden_field(:module_course_id, :value => @modulecourse.id) %>
+                <%=f.number_field(:grade,  in: 0..100, step: 1)%>
+                <%= f.submit("Set grade") %>
+              <% end %>
+            </td>
+            
+          <% end %>
+        <%else%>
+          <%if findgrade(s.user_id, @modulecourse.id) %>
+          <td><%= @fgrade.grade %></td>
+          <%end%>
         <% end %>
       </tr>
     <% end %>
