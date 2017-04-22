@@ -61,3 +61,5 @@ Grade.create(user_id: 6, module_course_id: 6, grade: 35)
 Grade.create(user_id: 9, module_course_id: 1, grade: 35)
 Grade.create(user_id: 9, module_course_id: 2, grade: 35)
 Grade.create(user_id: 9, module_course_id: 3, grade: 35)
+
+test
