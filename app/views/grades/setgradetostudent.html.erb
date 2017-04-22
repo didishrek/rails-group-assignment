@@ -23,7 +23,7 @@
             <%= f.hidden_field(:id, :value =>  @fgrade.id) %>
             <%= f.hidden_field(:user_id, :value => s.user_id) %>
             <%= f.hidden_field(:module_course_id, :value => @modulecourse.id) %>
-            <%=f.text_field(:grade, :value => @fgrade.grade)%>
+            <%= f.number_field(:grade, :value => @fgrade.grade, in: 0..100, step: 1)%>
             <%= f.submit("Update grade") %>
           <% end %>
         </td>
@@ -33,7 +33,7 @@
             <%= form_for @grade, url: {action: "create"} do |f| %>
               <%= f.hidden_field(:user_id, :value => s.user_id) %>
               <%= f.hidden_field(:module_course_id, :value => @modulecourse.id) %>
-              <%=f.text_field(:grade)%>
+              <%=f.number_field(:grade,  in: 0..100, step: 1)%>
               <%= f.submit("Set grade") %>
             <% end %>
           </td>
