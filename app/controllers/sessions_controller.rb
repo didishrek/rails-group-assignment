@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :logged_in_user
   def new
   end
   
@@ -17,5 +18,10 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     redirect_to root_url
+  end
+  
+  private
+  def logged_in_user
+    redirect_back_or current_user unless !logged_in?
   end
 end
