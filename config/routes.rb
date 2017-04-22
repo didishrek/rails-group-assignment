@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get 'search_by_student_number' => "students#search_by_student_number"
   get 'search_by_student_name' => "students#search_by_student_name"
   get 'addmodtolecturer' => "modulecourses#addmodtolecturer"
+  get 'setgradetostudent' => "grades#setgradetostudent"
+  post 'create' => "grades#create"
+  post 'update' => "grades#update"
 end
