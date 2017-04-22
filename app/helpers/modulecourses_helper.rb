@@ -1,5 +1,15 @@
 module ModulecoursesHelper
     
+  def canstudentenroll?(program_id)
+    program = Program.find_by(id: program_id)
+    now = Time.now
+    if now < program.inscription_limit
+      true
+    else
+      false
+    end
+  end
+    
   def hasenoughmodule?(user_id)
     student = Student.find_by(user_id: user_id)
     count = 0

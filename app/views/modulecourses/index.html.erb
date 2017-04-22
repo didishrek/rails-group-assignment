@@ -3,27 +3,31 @@
 
 <p id="notice"><%= notice %></p>
 
+
 <table>
-  <thead>
     <tr>
       <th>Program</th>
       <th>Module</th>
+      <%if logged_as_student? %>
+      <th>Enroll limit date</th>
+      <%end%>
       <th colspan="3"></th>
     </tr>
-  </thead>
 
-  <tbody>
     <% @modulecourses.each do |m| %>
       <tr>
          <% program = Program.find_by(id: m.program_id) %>
         <td><%= program.name %></td>
         <td><%= m.name %></td>
         <% if logged_as_student? %>
+        <td><%=program.inscription_limit%></td>
+        <% if canstudentenroll?(program.id) %>
           <% if !is_enrolled?(m)%>
             <td><%= link_to "Enroll", addmodtostudent_path("id" => m) %></td>
           <% else %>
             <td><%= link_to "Withdraw", withdrawmodulestudent_path("id" => m) %></td>
           <% end %>
+          <%end%>
         <% end %>
         
         <% if logged_as_moduleadmin? %>
@@ -43,5 +47,4 @@
         
       </tr>
     <% end %>
-  </tbody>
 </table>

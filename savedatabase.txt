@@ -19,8 +19,8 @@ Student.create(user_id: 3, module_course_id_1: 1, module_course_id_3: 3, module_
 Student.create(user_id: 4, module_course_id_1: 2, module_course_id_2: 1, module_course_id_3: 4, module_course_id_4: 3, module_course_id_5: 6)
 Student.create(user_id: 6, module_course_id_1: 3, module_course_id_2: 6, module_course_id_3: 4)
 
-Lecturer.create(user_id: 2)
-Lecturer.create(user_id: 5)
+Lecturer.create(user_id: 2, module_course_id_1: 1, module_course_id_2: 2, module_course_id_3: 3)
+Lecturer.create(user_id: 5, module_course_id_1: 4, module_course_id_2: 5, module_course_id_3: 6)
 
 Moduleadmin.create(user_id: 7)
 
