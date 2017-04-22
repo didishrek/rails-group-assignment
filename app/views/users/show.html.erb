@@ -31,9 +31,8 @@
       <p>You need to subscribe to more module. You cannot validate your semester</p>  
     <%end%>
     
-  <% if validatesemester?(@student.user_id)%>
+    <% validatesemester?(@student.user_id)%>
     <p> Semester : <%= @overall %></p>
-  <%end%>
   <%end%>
 <%end%>
 
