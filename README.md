@@ -1,3 +1,6 @@
+Project done by :   Adrien Schricke 2927372
+                    Felix Moulin 2927821
+
 You can test the website on https://group-assignment-schrica.herokuapp.com/
 
 You can login with this emails and passwords : 
