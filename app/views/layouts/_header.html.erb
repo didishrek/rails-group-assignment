@@ -1,31 +1,37 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container" style="margin-top: 15px;">
+    <nav>
+
 <% if logged_in? %>
     <% user = User.find_by(id: current_user) %>
-    <%= link_to 'Log out', logout_path, method: "delete" %> |
-    <%= link_to 'Home', user %> |
+    <%= link_to 'Log out', logout_path, {method: "delete", :style=>"color:white;" } %> |
+    <%= link_to 'Home', user , { :style=>"color:white;" }%> |
 <% else %>
-    <%= link_to 'Home', root_path %> |
-    <%= link_to 'Log in', login_path %> |
+    <%= link_to 'Home', root_path, { :style=>"color:white;" } %> |
+    <%= link_to 'Log in', login_path, { :style=>"color:white;" } %> |
 <% end %>
-<%= link_to 'Modules', modules_path%>
+<%= link_to 'Modules', modules_path, { :style=>"color:white;" }%>
 
 <% if logged_as_lecturer? or logged_as_programadmin? %>
-    <%= form_tag({controller: "students", action: "search_by_student_number"}, method: "get") do%>
-      <div class="field">
-        <%= label_tag(:student_number, "Student Number" )%><br>
+    <div style="float:right;" class="searchBar">
+    <%= form_tag({controller: "students", action: "search_by_student_number"}, {method: "get",  :style =>"    margin-right: 25%;width: 18%;    color: white;display: -webkit-inline-box;"}) do%>
+      
+        <p>By Number</p>
         <%= number_field_tag(:student_number) %>
-      </div>
-      <div class="actions">
-        <%= submit_tag("Search by student number") %>
+      <div class="actions" style="color:white;">
+        <%= submit_tag("Search") %>
       </div>
     <% end %>
     
-    <%= form_tag({controller: "students", action: "search_by_student_name"}, method: "get") do%>
-      <div class="field">
-        <%= label_tag(:name, "Student Name" )%><br>
+    <%= form_tag({controller: "students", action: "search_by_student_name"},  {method: "get",  :style =>"  width: 18%;  color: white;display: -webkit-inline-box;"}) do%>
+         <p>By Name</p>
         <%= text_field_tag(:name) %>
-      </div>
-      <div class="actions">
-        <%= submit_tag("Search by student name") %>
+      <div class="actions" style="color:white;">
+        <%= submit_tag("Search") %>
       </div>
     <% end %>
+    </div>
 <% end %>
+    </nav>
+</div>
+</header>
